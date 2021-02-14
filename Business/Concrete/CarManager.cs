@@ -9,15 +9,15 @@ namespace Business.Concrete
 {
     public class CarManager : ICarService
     {
-        ICarDal _car;
+        ICarDal _carDal;
 
-        public CarManager(ICarDal car)
+        public CarManager(ICarDal carDal)
         {
-            _car = car;
+            _carDal = carDal;
         }
         public List<Car> GetAll()
         {
-            return _car.GetAll();
+            return _carDal.GetAll();
         }
     }
 }
