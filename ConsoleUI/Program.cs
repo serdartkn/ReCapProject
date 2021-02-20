@@ -13,12 +13,12 @@ namespace ConsoleUI
         {
             CarManager carManager = new CarManager (new EfCarDal());
             
-            //foreach (var product in carManager.GetAll())
-            //{
-            //    Console.WriteLine(product.CarName +" "+product.DailyPrice+"TL");
-            //}
-
             carManager.Add(new Car {BrandId=3,ColorId=5,CarName="BMW",ModelYear=2019,DailyPrice=480,Description="Spor"});
+
+            foreach (var product in carManager.GetAll())
+            {
+                Console.WriteLine(product.CarName + " " + product.DailyPrice + "TL");
+            }
 
         }
     }
