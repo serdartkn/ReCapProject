@@ -13,7 +13,7 @@ namespace DataAccess.Concrete.EntityFramerwork
     {
         public void Add(Car entity)
         {
-            using (ReCapProjectDbContext context = new ReCapProjectDbContext())
+            using (CarDbContext context = new CarDbContext())
             {
                 var addedEntity = context.Entry(entity);
                 addedEntity.State = EntityState.Added;
@@ -28,7 +28,7 @@ namespace DataAccess.Concrete.EntityFramerwork
 
         public Car Get(Expression<Func<Car, bool>> filter)
         {
-            using (ReCapProjectDbContext context = new ReCapProjectDbContext())
+            using (CarDbContext context = new CarDbContext())
             {
                 return context.Set<Car>().SingleOrDefault(filter);
             }
@@ -36,7 +36,7 @@ namespace DataAccess.Concrete.EntityFramerwork
 
         public List<Car> GetAll(Expression<Func<Car, bool>> filter = null)
         {
-            using (ReCapProjectDbContext context = new ReCapProjectDbContext())
+            using (CarDbContext context = new CarDbContext())
             {
                 return filter == null ? context.Set<Car>().ToList() : context.Set<Car>().Where(filter).ToList();
             }
