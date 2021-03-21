@@ -1,4 +1,8 @@
 ﻿using Business.Abstract;
+using Business.Constants;
+using Core.Result.Abstract;
+using Core.Utilities.Result.Abstract;
+using Core.Utilities.Result.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using System;
@@ -14,44 +18,45 @@ namespace Business.Concrete
         {
             _colorDal = colorDal;
         }
-        public void Add(Color color)
+        public IResult Add(Color color)
         {
             if (color.ColorName.Length >= 2)
             {
                 _colorDal.Add(color);
-                Console.WriteLine("Başarıyla Kayıt Edildi.");
+                return new SuccesResult(Messages.ColorAdded);
             }
             else
             {
-                Console.WriteLine("Girilen Bilgileri Kontrol Edin!");
+                return new ErrorResult(Messages.ColorAddInvalid);
             }
         }
 
-        public void Delete(Color color)
+        public IResult Delete(Color color)
         {
             _colorDal.Delete(color);
+            return new SuccesResult(Messages.ColorDeleted);
         }
 
-        public List<Color> GetAll()
+        public IDataResult<List<Color>> GetAll()
         {
-            return _colorDal.GetAll();
+            return new SuccessDataResult<List<Color>>(_colorDal.GetAll(), Messages.ColorListed);
         }
 
-        public Color GetById(int Id)
+        public IDataResult<Color> GetById(int Id)
         {
-            return _colorDal.Get(c=>c.ColorId == Id);
+            return new SuccessDataResult<Color>(_colorDal.Get(color=>color.Id==Id), Messages.ColorListed);
         }
 
-        public void Update(Color color)
+        public IResult Update(Color color)
         {
             if (color.ColorName.Length >= 2)
             {
                 _colorDal.Update(color);
-                Console.WriteLine("Başarıyla Kayıt Edildi.");
+                return new SuccesResult(Messages.ColorUpdated);
             }
             else
             {
-                Console.WriteLine("Girilen Bilgileri Kontrol Edin!");
+                return new ErrorResult(Messages.ColorAddInvalid);
             }
         }
     }
