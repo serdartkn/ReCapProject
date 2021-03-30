@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,6 +21,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpGet("getall")]
+        //Bu operasyonu çalıstırabilmesi için kişinin tokenı olması gerek. (parantezz içinin boş olması yetkisi yoksa dahi token'ı varsa işlem yaptırıyor.)
+        //(Authorize ise .netten geliyor.)
+        [Authorize(Roles = "Car.List,Admin")]
         public IActionResult GetAll()
         {
             var result = _carService.GetAll();
