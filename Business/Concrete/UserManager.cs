@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Core.Entities.Concrete;
 using Core.Result.Abstract;
 using Core.Utilities.Result.Abstract;
 using Core.Utilities.Result.Concrete;
@@ -20,46 +21,29 @@ namespace Business.Concrete
             _userDal = userDal;
         }
 
-        public IResult Add(User user)
+        public List<OperationClaim> GetClaims(User user)
         {
-            if (user.FirstName.Length > 2)
-            {
-                _userDal.Add(user);
-                return new SuccesResult(Messages.UserAdded);
-            }
-            
-            return new ErrorResult(Messages.UserAddInvalid);
+            return _userDal.GetClaims(user);
         }
 
-        public IResult Delete(User user)
+        public User GetByMail(string email)
         {
-            if (user.FirstName.Length > 2)
-            {
-                _userDal.Delete(user);
-                return new SuccesResult(Messages.UserDeleted);
-
-            }
-            return new ErrorResult(Messages.UserAddInvalid);
+            return _userDal.Get(u => u.Email == email);
         }
 
-        public IDataResult<List<User>> GetAll()
+        public void Add(User user)
         {
-            return new SuccessDataResult<List<User>>(_userDal.GetAll(), Messages.UserListed);
+            _userDal.Add(user);
+
+        }
+        public void Update(User user)
+        {
+            _userDal.Update(user);
         }
 
-        public IDataResult<User> GetById(int id)
+        public void Delete(User user)
         {
-            return new SuccessDataResult<User>(_userDal.Get(u=>u.Id==id), Messages.UserListed);
-        }
-
-        public IResult Update(User user)
-        {
-            if (user.FirstName.Length > 2)
-            {
-                _userDal.Update(user);
-                return new SuccesResult(Messages.UserUpdated);
-            }
-            return new ErrorResult(Messages.UserAddInvalid);
+            _userDal.Delete(user);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Core.Result.Abstract;
+using Core.Utilities.Business;
 using Core.Utilities.Result.Abstract;
 using Entities.Concrete;
 using System;
@@ -7,12 +8,7 @@ using System.Text;
 
 namespace Business.Abstract
 {
-    public interface ICustomerService
+    public interface ICustomerService : ICrudRepository<Customer>
     {
-        IDataResult<List<Customer>> GetAll();
-        IDataResult<Customer> GetById(int id);
-        IResult Add(Customer customer);
-        IResult Update(Customer customer);
-        IResult Delete(Customer customer);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Core.Result.Abstract;
+using Core.Utilities.Business;
 using Core.Utilities.Result.Abstract;
 using Entities.Concrete;
 using System;
@@ -7,12 +8,7 @@ using System.Text;
 
 namespace Business.Abstract
 {
-    public interface IBrandService
+    public interface IBrandService : ICrudRepository<Brand>
     {
-        IDataResult<List<Brand>> GetAll();
-        IDataResult<Brand> GetById(int id);
-        IResult Add(Brand brand);
-        IResult Update(Brand brand);
-        IResult Delete(Brand brand);
     }
 }

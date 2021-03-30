@@ -11,7 +11,6 @@ using Entities.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using static Core.Aspect.Autofact.Validation.ValicationAspect;
 
 namespace Business.Concrete
 {

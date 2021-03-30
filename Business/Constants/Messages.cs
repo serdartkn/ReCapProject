@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Business.Constants
 {
-   public static class Messages
+    public static class Messages
     {
         public static string CarAdded = "Araba Kaydı Başarıyla Eklendi.";
         public static string CarAddInvalid = "Hata! Araba Bilgilerini Kontrol Ediniz.";
@@ -53,5 +53,23 @@ namespace Business.Constants
         public static string BrandListed = "Marka Kayıtları Başarıyla Listelendi.";
         public static string BrandListInvalid = "Marka Kaydı Listeleme Başarısız.";
 
+        public static string CarImageLimitError = "Marka Kayıtları Başarıyla Listelendi.";
+        public static string ImageIsNotFound = "Resim bulunamadı";
+        public static string CarIsNotFound = "ARaba bulunamadı";
+        public static string SuccessListed = "Başarıyla listelendi";
+        public static string ErrorListed = "Listelenemedi";
+        public static string SuccessUpdated = "Başarıyla güncellendi.";
+        public static string SuccessDeleted = "Başarıyla silindi";
+        public static string SuccessAdded = "Başarıyla eklendi";
+
+        public static string CarImageLimitExceeded { get; internal set; }
+
+        public static string AuthorizationDenied = "Yetkiniz yok.";
+        public static string UserRegistered = "Kullanıcı kayıt oldu.";
+        public static string UserNotFound = "Kullanıcı bulunamadı.";
+        public static string PasswordError = "Parola yanlış";
+        public static string SuccessfulLogin = "Giriş Başarılı";
+        public static string AccessTokenCreated = "Token oluşturuldu";
+        public static string UserAlreadyExists = "Kayıtlı email!!";
     }
 }
