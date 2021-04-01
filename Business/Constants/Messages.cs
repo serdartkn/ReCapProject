@@ -62,7 +62,7 @@ namespace Business.Constants
         public static string SuccessDeleted = "Başarıyla silindi";
         public static string SuccessAdded = "Başarıyla eklendi";
 
-        public static string CarImageLimitExceeded { get; internal set; }
+        public static string CarImageLimitExceeded ="Fotoğraf Ekleme Limitine Ulaşıldı.";
 
         public static string AuthorizationDenied = "Yetkiniz yok.";
         public static string UserRegistered = "Kullanıcı kayıt oldu.";
