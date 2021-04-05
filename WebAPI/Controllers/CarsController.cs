@@ -23,7 +23,7 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         //Bu operasyonu çalıstırabilmesi için kişinin tokenı olması gerek. (parantezz içinin boş olması yetkisi yoksa dahi token'ı varsa işlem yaptırıyor.)
         //(Authorize ise .netten geliyor.)
-        [Authorize(Roles = "Car.List,Admin")]
+        //[Authorize(Roles = "Car.List,Admin")]
         public IActionResult GetAll()
         {
             var result = _carService.GetAll();
