@@ -62,7 +62,7 @@ namespace Business.Constants
         public static string SuccessDeleted = "Başarıyla silindi";
         public static string SuccessAdded = "Başarıyla eklendi";
 
-        public static string CarImageLimitExceeded ="Fotoğraf Ekleme Limitine Ulaşıldı.";
+        public static string CarImageLimitExceeded ="Resim Ekleme Limitine Ulaşıldı.";
 
         public static string AuthorizationDenied = "Yetkiniz yok.";
         public static string UserRegistered = "Kullanıcı kayıt oldu.";
@@ -71,5 +71,10 @@ namespace Business.Constants
         public static string SuccessfulLogin = "Giriş Başarılı";
         public static string AccessTokenCreated = "Token oluşturuldu";
         public static string UserAlreadyExists = "Kayıtlı email!!";
+
+        public static string AddedCarImage = "Resim Yüklendi";
+
+        public static string DeletedCarImage { get; internal set; }
+        public static string UpdatedCarImage { get; internal set; }
     }
 }

@@ -2,12 +2,10 @@
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.DTOs;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace DataAccess.Concrete.EntityFramerwork
 {
@@ -20,19 +18,50 @@ namespace DataAccess.Concrete.EntityFramerwork
                 var result = from c in context.Cars
                              join b in context.Brands on c.BrandId equals b.Id
                              join co in context.Colors on c.ColorId equals co.Id
+                             let image = (from carImage in context.CarImages where c.Id == carImage.CarId select carImage.ImagePath)
+
                              select new CarDetailsDto
                              {
                                  CarId = c.Id,
                                  BrandName = b.BrandName,
                                  ColorName = co.ColorName,
+                                 CarName =c.CarName,
                                  ModelYear = c.ModelYear,
                                  DailyPrice = c.DailyPrice,
-                                 Description = c.Description
-                                 
+                                 Description = c.Description,
+                                 ImagePath = image.Any() ? image.FirstOrDefault() : new CarImage { ImagePath = "Images/DefaultCar.jpg" }.ImagePath
+
+
                              };
 
                 return result.ToList();
+            }
+        }
 
+
+        public List<CarDetailsDto> GetCarsByPropName(Expression<Func<CarDetailsDto, bool>> filter = null)
+        {
+            using (CarDbContext context = new CarDbContext())
+            {
+                var result = from c in context.Cars
+                             join b in context.Brands on c.BrandId equals b.Id
+                             join co in context.Colors on c.ColorId equals co.Id
+                             let image = (from carImage in context.CarImages where c.Id == carImage.CarId select carImage.ImagePath)
+                             select new CarDetailsDto
+                             {
+                                 CarId = c.Id,
+                                 BrandName = b.BrandName,
+                                 ColorName = co.ColorName,
+                                 CarName = c.CarName,
+                                 ModelYear = c.ModelYear,
+                                 DailyPrice = c.DailyPrice,
+                                 Description = c.Description,
+                                 ImagePath = image.Any() ? image.FirstOrDefault() : new CarImage { ImagePath = "Images/DefaultCar.jpg" }.ImagePath
+
+
+
+                             };
+                return filter == null ? result.ToList() : result.Where(filter).ToList();
             }
         }
     }

@@ -63,15 +63,21 @@ namespace Business.Concrete
             return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarDetails());
         }
 
-        public IDataResult<List<Car>> GetCarsByBrandId(int Id)
+        public IDataResult<List<CarDetailsDto>> GetCarDetailsbyId(int id)
         {
-          return new SuccessDataResult<List<Car>>(_carDal.GetAll(b => b.Id == Id), Messages.CarListed);
+            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarsByPropName(c => c.CarId == id));
         }
 
-        public IDataResult<List<Car>> GetCarsByColorId(int Id)
+        public IDataResult<List<CarDetailsDto>> GetCarsByBrandName(string brand)
         {
-            return new SuccessDataResult<List<Car>>(_carDal.GetAll(c => c.Id == Id), Messages.CarListed);
+          return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarsByPropName(b => b.BrandName == brand));
         }
+
+        public IDataResult<List<CarDetailsDto>> GetCarsByColorName(string color)
+        {
+            return new SuccessDataResult<List<CarDetailsDto>>(_carDal.GetCarsByPropName(b => b.ColorName == color));
+        }
+
 
         public IResult Update(Car car)
         {
@@ -83,6 +89,5 @@ namespace Business.Concrete
             
             return new ErrorResult(Messages.CarAddInvalid);
         }
-
     }
 }
